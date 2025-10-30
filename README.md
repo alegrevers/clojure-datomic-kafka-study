@@ -70,4 +70,4 @@ Sistema de mensagens distribuído. Producer envia mensagens assíncronas. Consum
 
 **MongoDB**: NoSQL documento, schema flexível, para logs/eventos.
 
-**Datomic**: Temporal imutável, audit trail completo, queries relacionais.# clojure-datomic-kafka-study
+**Datomic**: Temporal imutável, audit trail completo, queries relacionais.

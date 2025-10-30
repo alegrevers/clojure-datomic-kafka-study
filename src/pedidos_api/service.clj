@@ -11,15 +11,17 @@
     ;; Calcula total e cria pedido no Datomic
     (let [total (reduce + (map #(* (:quantidade %) (:preco-unitario %)) itens))
           pedido-id (java.util.UUID/randomUUID)
+          ;; Itens precisam de :db/id temporário para entidades aninhadas
+          itens-com-id (mapv #(merge {:db/id (str "item-" (java.util.UUID/randomUUID))}
+                                      {:item/produto-nome (:produto %)
+                                       :item/quantidade (:quantidade %)
+                                       :item/preco-unitario (bigdec (:preco-unitario %))})
+                             itens)
           pedido-data {:pedido/id pedido-id
                        :pedido/cliente-email email
                        :pedido/total (bigdec total)
                        :pedido/status :pendente
-                       :pedido/itens (mapv #(hash-map
-                                             :item/produto-nome (:produto %)
-                                             :item/quantidade (:quantidade %)
-                                             :item/preco-unitario (bigdec (:preco-unitario %)))
-                                           itens)}]
+                       :pedido/itens itens-com-id}]
       (datomic/create-pedido conn pedido-data)
       
       ;; Publica evento no Kafka

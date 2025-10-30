@@ -12,7 +12,8 @@
                        :pedido/cliente-email "teste@email.com"
                        :pedido/total 100M
                        :pedido/status :pendente
-                       :pedido/itens [{:item/produto-nome "Produto Teste"
+                       :pedido/itens [{:db/id "temp-item-1"
+                                       :item/produto-nome "Produto Teste"
                                        :item/quantidade 1
                                        :item/preco-unitario 100M}]}]
       

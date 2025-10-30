@@ -1,1 +1,1 @@
-{"pedidos-api.unit-test" ["test-datomic-create-pedido" "test-datomic-find-by-status"]}
+{"pedidos-api.integration-test" ["test-processar-pedido-completo"]}
